@@ -2353,3 +2353,133 @@ footer > p {
   }
 
 }
+
+/* =========================================
+   LIVE HERO ANIMATIONS
+========================================= */
+
+@keyframes orbitRotateA {
+  from {
+    transform: rotate(-15deg);
+  }
+
+  to {
+    transform: rotate(345deg);
+  }
+}
+
+@keyframes orbitRotateB {
+  from {
+    transform: rotate(20deg);
+  }
+
+  to {
+    transform: rotate(-340deg);
+  }
+}
+
+@keyframes shieldFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shieldGlow {
+  0%,
+  100% {
+    filter:
+      drop-shadow(
+        0 0 20px rgba(0, 197, 255, 0.45)
+      );
+  }
+
+  50% {
+    filter:
+      drop-shadow(
+        0 0 42px rgba(0, 234, 255, 0.95)
+      );
+  }
+}
+
+@keyframes globePulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 55px rgba(0, 119, 255, 0.15),
+      inset 0 0 40px rgba(0, 214, 255, 0.05);
+  }
+
+  50% {
+    box-shadow:
+      0 0 100px rgba(0, 157, 255, 0.32),
+      inset 0 0 65px rgba(0, 234, 255, 0.12);
+  }
+}
+
+@keyframes secureTextGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+    text-shadow: none;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 12px rgba(0, 234, 255, 0.8);
+  }
+}
+
+
+/* Orbit 1 rotates clockwise */
+
+.orbit-a {
+  animation:
+    orbitRotateA 10s linear infinite;
+}
+
+
+/* Orbit 2 rotates opposite direction */
+
+.orbit-b {
+  animation:
+    orbitRotateB 14s linear infinite;
+}
+
+
+/* Shield moves slowly up and down */
+
+.main-shield {
+  animation:
+    shieldFloat 3.5s ease-in-out infinite,
+    shieldGlow 2.5s ease-in-out infinite;
+}
+
+
+/* Globe emits slow cyber glow */
+
+.cyber-globe {
+  animation:
+    globePulse 3s ease-in-out infinite;
+}
+
+
+/* DETECT / PREVENT / STAY SECURE */
+
+.hero-security-text {
+  animation:
+    secureTextGlow 2.2s ease-in-out infinite;
+}
+
+
+/* Lock also gives a subtle pulse */
+
+.lock {
+  animation:
+    shieldFloat 4s ease-in-out infinite;
+}
