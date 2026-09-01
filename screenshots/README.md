@@ -1,9 +1,17 @@
-# Screenshots
+## 🖥️ Project Screenshots
 
-After publishing the website, add screenshots here if you want them visible in the GitHub README:
+### Cyber Threat Analyzer Dashboard
 
-- `dashboard.png`
-- `threat-detected.png`
-- `safe-result.png`
+![AI Cyber Threat Analyzer Dashboard](screenshots/dashboard.png)
 
-The project works without these images; they are optional portfolio visuals.
+### 🚨 Suspicious Activity Detected
+
+The analyzer identifies suspicious patterns, calculates a threat score, and displays detected security indicators.
+
+![Threat Detected](screenshots/threat-detected.png)
+
+### ✅ Safe File Analysis
+
+When no suspicious patterns are detected, the analyzer reports the uploaded log as low risk.
+
+![Safe Analysis Result](screenshots/safe-result.png)
