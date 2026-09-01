@@ -1,0 +1,13 @@
+2026-09-01 09:00:01 INFO  auth     User tanzeel logged in successfully from 10.10.5.24
+2026-09-01 09:02:44 INFO  web      GET /dashboard 200 user=tanzeel
+2026-09-01 10:13:07 WARN  auth     Failed login for admin from 185.220.101.45
+2026-09-01 10:13:10 WARN  auth     Failed login for admin from 185.220.101.45
+2026-09-01 10:13:14 WARN  auth     Failed login for admin from 185.220.101.45
+2026-09-01 10:13:19 WARN  auth     Failed login for admin from 185.220.101.45
+2026-09-01 10:13:23 ALERT auth     Multiple failed attempts detected - possible brute force
+2026-09-01 10:14:02 ALERT firewall Suspicious IP 185.220.101.45 triggered reputation rule
+2026-09-01 10:15:33 ALERT network  Port scan detected: multiple ports probed on 10.10.5.10
+2026-09-01 10:16:08 WARN  access   Unauthorized access attempt to /admin/export
+2026-09-01 10:17:42 ALERT system   Privilege escalation attempt by service account websvc
+2026-09-01 10:19:55 ALERT waf      SQL injection signature: "UNION SELECT username,password FROM users"
+2026-09-01 10:20:10 INFO  response Security alert generated and source IP queued for investigation

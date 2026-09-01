@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Interactive browser-based cybersecurity threat analyzer for log files." />
+  <title>AI Cyber Threat Analyzer</title>
+  <link rel="icon" href="assets/icons/shield.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div class="cyber-grid" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+
+  <header class="topbar glass">
+    <a class="brand" href="#home">
+      <span class="brand-mark">⛨</span>
+      <span>AI CYBER THREAT ANALYZER</span>
+    </a>
+    <nav>
+      <a href="#analyzer">Analyzer</a>
+      <a href="#samples">Samples</a>
+      <a href="#about">About</a>
+      <a class="github-link" href="https://github.com/Tanzeel0Hussain" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <span class="eyebrow">CYBERSECURITY • THREAT INTELLIGENCE • LOG ANALYSIS</span>
+        <h1>Analyze. Detect.<br><span>Understand.</span></h1>
+        <p>
+          Upload a <strong>.log</strong> or <strong>.txt</strong> file and scan it for suspicious security indicators,
+          threat patterns, and risky activity — directly in your browser.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#analyzer">Launch Analyzer</a>
+          <a class="btn secondary" href="samples/suspicious_activity.log" download>Download Suspicious Sample</a>
+        </div>
+        <div class="mini-stats">
+          <div><b>10+</b><span>Threat indicators</span></div>
+          <div><b>100%</b><span>Browser-side</span></div>
+          <div><b>0</b><span>Files uploaded to server</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual glass tilt-card" aria-label="Threat monitoring illustration">
+        <div class="radar">
+          <div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-ring r3"></div>
+          <div class="radar-sweep"></div>
+          <div class="radar-core">AI</div>
+          <span class="blip b1"></span><span class="blip b2"></span><span class="blip b3"></span>
+        </div>
+        <div class="visual-caption">
+          <span class="pulse-dot"></span> Live pattern analysis ready
+        </div>
+      </div>
+    </section>
+
+    <section id="analyzer" class="section-shell analyzer-section">
+      <div class="section-heading">
+        <span class="eyebrow">LIVE DEMO</span>
+        <h2>Security Log Analyzer</h2>
+        <p>Drop a sample log below. The analyzer scores matches using transparent cybersecurity detection rules.</p>
+      </div>
+
+      <div class="analyzer-grid">
+        <div class="upload-panel glass">
+          <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload log file">
+            <div class="upload-icon">⇧</div>
+            <h3>Drop a log file here</h3>
+            <p>or click to browse</p>
+            <small>Accepted: .log, .txt • Max recommended size: 2 MB</small>
+            <input id="fileInput" type="file" accept=".log,.txt,text/plain" hidden />
+          </div>
+
+          <div id="fileMeta" class="file-meta hidden">
+            <span id="fileName">No file selected</span>
+            <span id="fileSize">0 KB</span>
+          </div>
+
+          <div class="control-row">
+            <button id="analyzeBtn" class="btn primary full" disabled>Analyze Threats</button>
+            <button id="resetBtn" class="btn secondary">Reset</button>
+          </div>
+
+          <div class="privacy-note">🔒 Analysis happens locally in your browser. This demo does not upload your file to a server.</div>
+        </div>
+
+        <div id="resultPanel" class="result-panel glass neutral">
+          <div class="result-top">
+            <div>
+              <span class="eyebrow">SECURITY ANALYSIS</span>
+              <h3 id="statusTitle">Awaiting file</h3>
+            </div>
+            <div id="riskGauge" class="risk-gauge" style="--risk:0">
+              <span id="riskScore">0</span><small>/100</small>
+            </div>
+          </div>
+
+          <div class="result-kpis">
+            <div><span>Threat Level</span><b id="threatLevel">—</b></div>
+            <div><span>Indicators</span><b id="indicatorCount">0</b></div>
+            <div><span>Lines Scanned</span><b id="lineCount">0</b></div>
+          </div>
+
+          <div class="result-block">
+            <h4>Detected Indicators</h4>
+            <div id="indicatorList" class="indicator-list empty-state">No analysis yet.</div>
+          </div>
+
+          <div class="result-block">
+            <h4>Security Recommendation</h4>
+            <p id="recommendation">Upload a file to begin.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <div class="glass evidence-card">
+          <div class="card-heading"><h3>Matched Evidence</h3><span id="matchBadge">0 matches</span></div>
+          <div id="evidenceList" class="evidence-list empty-state">Matched log lines will appear here.</div>
+        </div>
+        <div class="glass evidence-card">
+          <div class="card-heading"><h3>Threat Breakdown</h3><span>Rule engine</span></div>
+          <div id="breakdown" class="breakdown empty-state">Threat categories will appear after analysis.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="samples" class="section-shell samples-section">
+      <div class="section-heading">
+        <span class="eyebrow">PRESENTATION DEMO FILES</span>
+        <h2>Two files. Two very different results.</h2>
+        <p>Download both from GitHub and upload them into the analyzer during your live presentation.</p>
+      </div>
+      <div class="sample-grid">
+        <article class="sample-card glass danger-card">
+          <span class="sample-chip danger">SUSPICIOUS</span>
+          <h3>suspicious_activity.log</h3>
+          <p>Contains failed logins, a port scan, suspicious IP activity, privilege escalation, and SQL injection indicators.</p>
+          <a class="btn danger-btn" href="samples/suspicious_activity.log" download>Download Sample</a>
+        </article>
+        <article class="sample-card glass safe-card">
+          <span class="sample-chip safe">NORMAL</span>
+          <h3>normal_activity.log</h3>
+          <p>Contains routine authentication, application, backup, and network events without known suspicious patterns.</p>
+          <a class="btn safe-btn" href="samples/normal_activity.log" download>Download Sample</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section-shell about-section">
+      <div class="section-heading">
+        <span class="eyebrow">HOW IT WORKS</span>
+        <h2>Transparent threat scoring</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="glass step"><b>01</b><h3>Read</h3><p>The browser reads the text log locally.</p></div>
+        <div class="glass step"><b>02</b><h3>Match</h3><p>Security rules search for suspicious patterns and phrases.</p></div>
+        <div class="glass step"><b>03</b><h3>Score</h3><p>Indicators contribute weighted risk points by severity.</p></div>
+        <div class="glass step"><b>04</b><h3>Explain</h3><p>The dashboard shows matched evidence and recommendations.</p></div>
+      </div>
+      <div class="disclaimer glass">
+        <strong>Academic demo note:</strong> This version is a rule-based cybersecurity concept demo, not a production IDS and not a trained ML model. Real AI-powered security platforms can combine machine learning, behavioral analytics, threat intelligence, and human investigation.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>AI Cyber Threat Analyzer • Academic Cybersecurity Demo</span>
+    <a href="https://github.com/Tanzeel0Hussain" target="_blank" rel="noreferrer">Tanzeel0Hussain on GitHub</a>
+  </footer>
+
+  <script src="js/threat-rules.js"></script>
+  <script src="js/file-handler.js"></script>
+  <script src="js/analyzer.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
