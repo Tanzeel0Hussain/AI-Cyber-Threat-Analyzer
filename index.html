@@ -1,56 +1,715 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Interactive browser-based cybersecurity threat analyzer for log files." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>AI Cyber Threat Analyzer</title>
-  <link rel="icon" href="assets/icons/shield.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<header class="topbar">
-  <a class="brand" href="#home"><span class="logo">⬢</span><span><b>AI Cyber Threat <em>Analyzer</em></b><small>Analyze. Detect. Understand. Stay Secure.</small></span></a>
-  <nav><a class="active" href="#home">⌂ Home</a><a href="#about">ⓘ About</a><a href="#about">✣ How It Works</a><a href="#samples">▣ Sample Files</a><a href="https://github.com/Tanzeel0Hussain" target="_blank">GitHub ↗</a></nav>
-</header>
-<aside class="sidebar">
-  <a class="active" href="#home">▦ <span>Dashboard</span></a>
-  <a href="#analyzer">⌕ <span>Analyze</span></a>
-  <a href="#analyzer">♢ <span>Threats</span></a>
-  <a href="#analyzer">▤ <span>Reports</span></a>
-  <a href="#samples">▧ <span>Samples</span></a>
-  <a href="#about">ⓘ <span>About</span></a>
-  <div class="side-quote"><div class="mini-shield">◆</div>“A Safer Digital World Starts with Awareness.”</div>
-</aside>
-<main id="home">
-  <section class="hero panel">
-    <div class="hero-copy"><h1>AI Powered<br><span>Threat Analysis</span></h1><p>Upload your log file and let our security engine detect suspicious activity, analyze patterns, and provide actionable security insights.</p><div class="feature-row"><span>⚡ <b>Fast</b><small>Analysis</small></span><span>◎ <b>Threat</b><small>Detection</small></span><span>▥ <b>Actionable</b><small>Insights</small></span></div></div>
-    <div class="hero-art"><div class="globe"></div><div class="shield3d">🔒</div><strong>DETECT<br>PREVENT<br>STAY SECURE</strong></div>
-    <div class="hero-stats"><blockquote>“Cybersecurity<br>is not a product,<br>but a process.”</blockquote><div><b>1K+</b><small>Files Analyzed</small></div><div><b>95%</b><small>Detection Accuracy*</small></div><div><b>24/7</b><small>Browser Protection</small></div></div>
-  </section>
 
-  <section id="analyzer" class="work-grid">
-    <div class="upload-panel panel">
-      <div id="dropZone" class="drop-zone" tabindex="0"><div class="upload-cloud">☁</div><h2>Drag & Drop your log file here</h2><p>or <span>click to browse</span></p><small>Supports .log, .txt files (Max 5MB recommended)</small><input id="fileInput" type="file" accept=".log,.txt,text/plain" hidden /></div>
-      <div id="fileMeta" class="file-meta hidden"><span id="fileName">No file selected</span><span id="fileSize">0 KB</span></div>
-      <div class="actions"><button id="analyzeBtn" class="btn" disabled>Analyze Threats</button><button id="resetBtn" class="btn ghost">Reset</button></div>
-    </div>
-    <div id="samples" class="samples panel"><h2>▣ Sample Files</h2><p>Download sample files to test the analyzer</p><a href="samples/suspicious_activity.log" download><i class="file danger">▤</i><span><b>suspicious_activity.log</b><small>Contains malicious patterns</small></span><strong>⇩</strong></a><a href="samples/normal_activity.log" download><i class="file safe">▤</i><span><b>normal_activity.log</b><small>Normal system activity</small></span><strong>⇩</strong></a></div>
-  </section>
+  <div class="app">
 
-  <section class="kpis"><div class="panel"><i>▦</i><span>Total Scans<big id="totalScans">0</big><small>Local session</small></span></div><div class="panel"><i class="red">⚠</i><span>Threats Detected<big id="threatScans">0</big><small>High risk files</small></span></div><div class="panel"><i class="green">✓</i><span>Safe Files<big id="safeScans">0</big><small>No threats</small></span></div><div class="panel"><i>⌁</i><span>Analyzer<big>Ready</big><small>Browser-side</small></span></div></section>
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar">
 
-  <section id="resultPanel" class="result-panel panel neutral">
-    <div class="result-head"><div><small>SECURITY ANALYSIS</small><h2 id="statusTitle">Awaiting file</h2></div><div id="riskGauge" class="risk-gauge" style="--risk:0"><span id="riskScore">0</span><small>/100</small></div></div>
-    <div class="result-kpis"><div>Threat Level<b id="threatLevel">—</b></div><div>Indicators Found<b id="indicatorCount">0</b></div><div>Lines Scanned<b id="lineCount">0</b></div></div>
-    <div class="result-columns"><div><h3>Detected Threats & Indicators</h3><div id="indicatorList" class="indicator-list empty-state">No analysis yet.</div><h3>Matched Evidence</h3><div id="evidenceList" class="evidence-list empty-state">Matched log lines will appear here.</div><span id="matchBadge" hidden>0 matches</span></div><div><h3>Threat Breakdown</h3><div id="breakdown" class="breakdown empty-state">Threat categories will appear after analysis.</div><h3>Security Recommendation</h3><p id="recommendation">Upload a file to begin.</p></div></div>
-  </section>
+      <div class="brand-small">
+        <div class="shield-logo">🛡</div>
+      </div>
 
-  <section id="about" class="about panel"><h2>How It Works</h2><div><span><b>01</b> Read<small>Reads the log locally.</small></span><span><b>02</b> Match<small>Finds security patterns.</small></span><span><b>03</b> Score<small>Calculates weighted risk.</small></span><span><b>04</b> Explain<small>Shows evidence and guidance.</small></span></div><p><b>Academic demo:</b> This version is a transparent rule-based cybersecurity concept demo, not a production IDS or a trained ML model.</p></section>
-</main>
-<footer><b>🛡 AI Cyber Threat Analyzer</b><span>Built for a Safer Tomorrow</span><q>Analyze today. Prevent tomorrow.</q></footer>
-<script src="js/threat-rules.js"></script><script src="js/file-handler.js"></script><script src="js/analyzer.js"></script><script src="js/dashboard.js"></script><script src="js/app.js"></script>
-<script>document.addEventListener('click',()=>{});</script>
-</body></html>
+      <nav class="side-nav">
+
+        <a href="#" class="side-link active">
+          <span class="side-icon">▦</span>
+          Dashboard
+        </a>
+
+        <a href="#analyzer" class="side-link">
+          <span class="side-icon">⌕</span>
+          Analyze
+        </a>
+
+        <a href="#threats" class="side-link">
+          <span class="side-icon">♢</span>
+          Threats
+        </a>
+
+        <a href="#reports" class="side-link">
+          <span class="side-icon">▤</span>
+          Reports
+        </a>
+
+        <a href="#samples" class="side-link">
+          <span class="side-icon">▣</span>
+          Samples
+        </a>
+
+        <a href="#about" class="side-link">
+          <span class="side-icon">ⓘ</span>
+          About
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="mini-shield">🛡</div>
+
+        <p>
+          “A Safer Digital World
+          Starts with Awareness.”
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN AREA
+    ========================== -->
+    <main class="main">
+
+      <!-- TOP NAVBAR -->
+      <header class="topbar">
+
+        <div class="brand">
+          <div class="brand-logo">🛡</div>
+
+          <div>
+            <h2>
+              AI Cyber Threat
+              <span>Analyzer</span>
+            </h2>
+
+            <p>
+              Analyze. Detect. Understand. Stay Secure.
+            </p>
+          </div>
+        </div>
+
+        <nav class="top-nav">
+          <a href="#" class="top-active">⌂ Home</a>
+          <a href="#about">ⓘ About</a>
+          <a href="#how">✣ How It Works</a>
+          <a href="#samples">▣ Sample Files</a>
+          <a href="https://github.com/Tanzeel0Hussain/AI-Cyber-Threat-Analyzer" target="_blank">
+            GitHub ↗
+          </a>
+        </nav>
+
+      </header>
+
+
+      <!-- =========================
+           HERO
+      ========================== -->
+      <section class="hero">
+
+        <div class="hero-left">
+
+          <span class="section-tag">
+            CYBERSECURITY ANALYSIS
+          </span>
+
+          <h1>
+            AI Powered
+            <span>Threat Analysis</span>
+          </h1>
+
+          <p class="hero-text">
+            Upload your security log file and let the threat analyzer
+            detect suspicious activity, analyze patterns and provide
+            actionable cybersecurity insights.
+          </p>
+
+          <div class="features">
+
+            <div class="feature">
+              <div class="feature-icon">⚡</div>
+              <div>
+                <strong>Fast</strong>
+                <span>Analysis</span>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon danger">◎</div>
+              <div>
+                <strong>Threat</strong>
+                <span>Detection</span>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon cyan">▥</div>
+              <div>
+                <strong>Actionable</strong>
+                <span>Insights</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CENTER 3D STYLE VISUAL -->
+        <div class="hero-center">
+
+          <div class="globe">
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="cyber-shield">
+
+              <div class="shield-shape">
+
+                <div class="lock">
+                  <div class="lock-top"></div>
+                  <div class="lock-body">
+                    <span></span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="secure-text">
+            <span>DETECT</span>
+            <span>PREVENT</span>
+            <span>STAY SECURE</span>
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT INFO -->
+        <div class="hero-right">
+
+          <blockquote>
+            “Cybersecurity is not a product,
+            but a process.”
+          </blockquote>
+
+          <div class="divider"></div>
+
+          <div class="stat-mini">
+            <strong>LOCAL</strong>
+            <span>Browser Analysis</span>
+          </div>
+
+          <div class="stat-mini">
+            <strong>FAST</strong>
+            <span>Threat Scanning</span>
+          </div>
+
+          <div class="stat-mini">
+            <strong>24/7</strong>
+            <span>Demo Availability</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           UPLOAD + SAMPLE AREA
+      ========================== -->
+      <section class="analysis-row" id="analyzer">
+
+        <div class="upload-card">
+
+          <div class="upload-area">
+
+            <div class="upload-icon">
+              ⇧
+            </div>
+
+            <h3>
+              Drag & Drop your log file here
+            </h3>
+
+            <p>
+              or click to browse
+            </p>
+
+            <small>
+              Supports .log and .txt files
+            </small>
+
+            <label class="upload-button">
+              Choose File
+              <input type="file" accept=".log,.txt" hidden />
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <div class="sample-card" id="samples">
+
+          <div class="card-title">
+            <div class="title-icon">▣</div>
+
+            <div>
+              <h3>Sample Files</h3>
+              <p>Download sample logs to test the analyzer</p>
+            </div>
+          </div>
+
+          <a
+            class="sample-file danger-file"
+            href="samples/suspicious_activity.log"
+            download
+          >
+
+            <div class="file-icon">▤</div>
+
+            <div class="file-info">
+              <strong>suspicious_activity.log</strong>
+              <span>Contains suspicious patterns</span>
+            </div>
+
+            <div class="download">
+              ↓
+            </div>
+
+          </a>
+
+
+          <a
+            class="sample-file safe-file"
+            href="samples/normal_activity.log"
+            download
+          >
+
+            <div class="file-icon">▤</div>
+
+            <div class="file-info">
+              <strong>normal_activity.log</strong>
+              <span>Normal system activity</span>
+            </div>
+
+            <div class="download">
+              ↓
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           STAT CARDS
+      ========================== -->
+      <section class="stats">
+
+        <div class="stat-card">
+
+          <div class="stat-icon blue">▦</div>
+
+          <div>
+            <span>Demo Scans</span>
+            <h2>02</h2>
+            <small>Sample files available</small>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon red">▲</div>
+
+          <div>
+            <span>Threat Samples</span>
+            <h2>01</h2>
+            <small>Suspicious demo log</small>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon green">✓</div>
+
+          <div>
+            <span>Safe Samples</span>
+            <h2>01</h2>
+            <small>Clean activity log</small>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon cyan">↗</div>
+
+          <div>
+            <span>Detection Engine</span>
+            <h2>Rule Based</h2>
+            <small>Browser-side analysis</small>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           HOW IT WORKS
+      ========================== -->
+      <section class="content-section" id="how">
+
+        <div class="section-heading">
+
+          <span>WORKFLOW</span>
+
+          <h2>
+            How Threat Analysis Works
+          </h2>
+
+          <p>
+            The demo analyzes uploaded log files using predefined
+            cybersecurity indicators and suspicious patterns.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+          <div class="step-card">
+
+            <span class="step-number">
+              01
+            </span>
+
+            <div class="step-icon">
+              ⇧
+            </div>
+
+            <h3>
+              Upload Log
+            </h3>
+
+            <p>
+              Upload a .log or .txt security activity file.
+            </p>
+
+          </div>
+
+
+          <div class="step-line"></div>
+
+
+          <div class="step-card">
+
+            <span class="step-number">
+              02
+            </span>
+
+            <div class="step-icon">
+              ◎
+            </div>
+
+            <h3>
+              Analyze Patterns
+            </h3>
+
+            <p>
+              Suspicious security keywords and patterns are inspected.
+            </p>
+
+          </div>
+
+
+          <div class="step-line"></div>
+
+
+          <div class="step-card">
+
+            <span class="step-number">
+              03
+            </span>
+
+            <div class="step-icon">
+              ⚠
+            </div>
+
+            <h3>
+              Detect Threats
+            </h3>
+
+            <p>
+              Known indicators are identified and categorized.
+            </p>
+
+          </div>
+
+
+          <div class="step-line"></div>
+
+
+          <div class="step-card">
+
+            <span class="step-number">
+              04
+            </span>
+
+            <div class="step-icon">
+              ✓
+            </div>
+
+            <h3>
+              Security Result
+            </h3>
+
+            <p>
+              The analyzer displays risk information and recommendations.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           THREAT TYPES
+      ========================== -->
+      <section class="content-section" id="threats">
+
+        <div class="section-heading">
+
+          <span>SECURITY INDICATORS</span>
+
+          <h2>
+            Threat Patterns
+          </h2>
+
+          <p>
+            The demo can identify several common suspicious indicators.
+          </p>
+
+        </div>
+
+
+        <div class="threat-grid">
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              🔐
+            </div>
+
+            <h3>
+              Failed Login
+            </h3>
+
+            <p>
+              Detect repeated login and authentication failures.
+            </p>
+
+          </div>
+
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              ⚡
+            </div>
+
+            <h3>
+              Brute Force
+            </h3>
+
+            <p>
+              Identify patterns suggesting repeated access attempts.
+            </p>
+
+          </div>
+
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              ⛔
+            </div>
+
+            <h3>
+              Unauthorized Access
+            </h3>
+
+            <p>
+              Detect suspicious attempts to access protected resources.
+            </p>
+
+          </div>
+
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              🌐
+            </div>
+
+            <h3>
+              Suspicious IP
+            </h3>
+
+            <p>
+              Highlight potentially suspicious network activity.
+            </p>
+
+          </div>
+
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              🧬
+            </div>
+
+            <h3>
+              Malware Indicators
+            </h3>
+
+            <p>
+              Search for terms associated with malicious software activity.
+            </p>
+
+          </div>
+
+
+          <div class="threat-card">
+
+            <div class="threat-icon">
+              ⌘
+            </div>
+
+            <h3>
+              SQL Injection
+            </h3>
+
+            <p>
+              Identify simple SQL injection patterns inside logs.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           ABOUT
+      ========================== -->
+      <section class="about-section" id="about">
+
+        <div>
+
+          <span class="section-tag">
+            ABOUT THE PROJECT
+          </span>
+
+          <h2>
+            AI Cyber Threat Analyzer
+          </h2>
+
+          <p>
+            AI Cyber Threat Analyzer is an educational cybersecurity
+            demonstration created to show how security logs can be
+            inspected for suspicious patterns and threat indicators.
+          </p>
+
+          <p>
+            This version uses browser-side rule-based analysis and is
+            designed as a concept demonstration for the topic
+            “AI in Cybersecurity: Detecting and Preventing Cyber Attacks.”
+          </p>
+
+        </div>
+
+
+        <div class="about-panel">
+
+          <div>
+            <span>PROJECT TYPE</span>
+            <strong>Cybersecurity Demo</strong>
+          </div>
+
+          <div>
+            <span>TECHNOLOGY</span>
+            <strong>HTML • CSS • JavaScript</strong>
+          </div>
+
+          <div>
+            <span>DEPLOYMENT</span>
+            <strong>GitHub Pages</strong>
+          </div>
+
+          <div>
+            <span>CREATED BY</span>
+            <strong>Tanzeel Hussain</strong>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+      <footer>
+
+        <div class="footer-brand">
+
+          <div class="shield-logo">
+            🛡
+          </div>
+
+          <div>
+
+            <strong>
+              AI Cyber Threat Analyzer
+            </strong>
+
+            <span>
+              Built for a Safer Tomorrow
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p>
+          Analyze today. Prevent tomorrow.
+        </p>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
