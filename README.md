@@ -1,143 +1,300 @@
+<div align="center">
+
 # 🛡️ AI Cyber Threat Analyzer
 
-An interactive **cybersecurity threat-analysis demo** that scans `.log` and `.txt` files for suspicious activity, calculates a risk score, explains matched indicators, and provides security recommendations — entirely in the browser.
+### Detect Suspicious Activity • Analyze Security Logs • Understand Cyber Threats
 
-> Built as a companion project for the presentation **“AI in Cybersecurity: Detecting and Preventing Cyber Attacks.”**
+An interactive cybersecurity threat-analysis web application that analyzes `.log` and `.txt` files, detects suspicious activity, calculates a risk score, highlights matched evidence, and provides security recommendations directly inside the browser.
 
-## ✨ Features
+[![Live Demo](https://img.shields.io/badge/🚀_LIVE_DEMO-Open_Analyzer-00C7FF?style=for-the-badge)](https://tanzeel0hussain.github.io/AI-Cyber-Threat-Analyzer/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Tanzeel0Hussain/AI-Cyber-Threat-Analyzer)
 
-- Drag-and-drop `.log` / `.txt` file analysis
-- Rule-based detection of 10+ security indicators
+![HTML5](https://img.shields.io/badge/HTML5-Web_Interface-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-Cyber_UI-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-Threat_Engine-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Live-222222?style=flat-square&logo=github)
+
+**Companion Project for**
+
+## AI in Cybersecurity: Detecting and Preventing Cyber Attacks
+
+</div>
+
+---
+
+## 🌐 Live Cybersecurity Demo
+
+The project is deployed using **GitHub Pages** and can be tested directly from a web browser.
+
+### 🚀 [Launch AI Cyber Threat Analyzer](https://tanzeel0hussain.github.io/AI-Cyber-Threat-Analyzer/)
+
+No installation, backend server, database, or API key is required.
+
+---
+
+# 📸 Project Preview
+
+## 🖥️ Cybersecurity Dashboard
+
+![AI Cyber Threat Analyzer Dashboard](screenshots/dashboard.png)
+
+## 🚨 Suspicious Activity Detection
+
+The analyzer can display a risk score, threat level, matched indicators, evidence, category breakdown, and a security recommendation.
+
+![Threat Detected](screenshots/threat-detected.png)
+
+## ✅ Safe Activity Result
+
+When no configured suspicious indicators are found, the analyzer reports the log as safe/low risk.
+
+![Safe Result](screenshots/safe-result.png)
+
+---
+
+# 🎯 Project Objective
+
+Cybersecurity systems generate large amounts of log data containing authentication attempts, network activity, system events, and possible attacks. This project demonstrates how automated security analysis can inspect those logs and turn suspicious patterns into understandable threat information.
+
+```text
+Security Log
+     ↓
+Read Log Data
+     ↓
+Analyze Security Events
+     ↓
+Match Threat Indicators
+     ↓
+Calculate Risk Score
+     ↓
+Identify Threat Level
+     ↓
+Display Evidence
+     ↓
+Generate Security Recommendation
+```
+
+---
+
+# ✨ Main Features
+
+- Drag-and-drop `.log` and `.txt` file analysis
+- Browser-side threat scanning
 - Risk score from **0–100**
 - Threat levels: Minimal, Low, Medium, High, Critical
-- Detects patterns related to:
-  - Failed login attempts
-  - Brute-force activity
-  - Unauthorized access
-  - SQL injection
-  - Port scanning
-  - Malware / ransomware indicators
-  - Privilege escalation
-  - Suspicious IP activity
-  - DoS / DDoS patterns
-  - Possible data exfiltration
-  - Phishing indicators
-- Shows exact matched evidence from the uploaded log
+- Matched security evidence
 - Threat-category breakdown
-- Contextual security recommendations
-- Two downloadable sample logs for a live classroom demo
-- Privacy-friendly: files are processed locally and are **not uploaded to a server**
-- Responsive dark cyber / glassmorphism interface
-- Works on **GitHub Pages** with no backend required
+- Security recommendations
+- Two downloadable demo log files
+- Privacy-friendly local file processing
+- Responsive dark cyber interface
+- GitHub Pages deployment with no backend required
 
-## 🚀 Live Demo
+---
 
-After enabling GitHub Pages, your URL will normally be:
+# 🚨 Threat Indicators
 
-`https://tanzeel0hussain.github.io/AI-Cyber-Threat-Analyzer/`
+| Security Indicator | Purpose |
+|---|---|
+| 🔐 Failed Login | Detect failed authentication attempts |
+| ⚡ Brute Force | Identify repeated login attacks |
+| ⛔ Unauthorized Access | Detect access violations |
+| 💉 SQL Injection | Identify SQL injection indicators |
+| 🌐 Suspicious IP Activity | Highlight suspicious network activity |
+| 🔎 Port Scanning | Detect reconnaissance behavior |
+| 🦠 Malware Indicators | Identify malware-related patterns |
+| 🔒 Ransomware Indicators | Detect ransomware-related activity |
+| 👑 Privilege Escalation | Identify suspicious privilege changes |
+| 📡 DoS / DDoS | Detect denial-of-service indicators |
+| 📤 Data Exfiltration | Identify possible unauthorized data transfer |
+| 🎣 Phishing Indicators | Detect phishing-related patterns |
 
-## 🎬 Classroom Demo Flow
+---
 
-1. Open the live GitHub Pages website.
-2. Download `samples/suspicious_activity.log` from the repository or the website.
-3. Upload it to the analyzer.
-4. Show the **Suspicious Activity Detected** result, risk score, matched indicators, evidence, and recommendation.
-5. Download `samples/normal_activity.log`.
-6. Upload it and show the **No Suspicious Activity Detected** result.
-7. Open the `presentation/` folder and download the PowerPoint presentation.
+# 🧠 How the Detection Engine Works
 
-## 🧠 How Detection Works
+This version uses a transparent **rule-based cybersecurity threat-scoring engine**.
 
-This academic version uses a transparent **rule-based threat scoring engine**:
+```text
+Uploaded File
+      ↓
+Browser File API
+      ↓
+Threat Rules
+      ↓
+Pattern Matching
+      ↓
+Severity Weighting
+      ↓
+Risk Calculation
+      ↓
+Threat Report
+```
 
-`Log File → Read Locally → Match Security Rules → Score Risk → Explain Evidence → Recommend Action`
+Each security detection rule can contain a threat name, category, suspicious patterns, severity, and weighted score. Repeated suspicious events can increase the overall risk score.
 
-Each detection rule has:
+---
 
-- One or more text patterns
-- A security category
-- A severity level
-- A weighted score
+# 🎬 Live Classroom Demo
 
-Repeated events can increase the score. Multiple failed-login events can also trigger a derived brute-force indicator.
+## 🚨 Suspicious Log
 
-## ⚠️ Important Accuracy Note
+File: `samples/suspicious_activity.log`
 
-This version is a **rule-based cybersecurity concept demo**, not a production Intrusion Detection System and not a trained machine-learning model. It demonstrates the same high-level security workflow discussed in the presentation: collect data, analyze activity, identify suspicious patterns, generate an alert, and support human investigation.
+```text
+Download suspicious_activity.log
+            ↓
+Upload to Analyzer
+            ↓
+Click "Analyze Threats"
+            ↓
+Suspicious Activity Detected
+            ↓
+Show Risk Score + Indicators + Evidence + Recommendation
+```
 
-A future version could replace or augment the rule engine with a trained model using Scikit-learn and a real intrusion-detection dataset.
+## ✅ Normal Log
 
-## 📁 Project Structure
+File: `samples/normal_activity.log`
+
+```text
+Download normal_activity.log
+          ↓
+Upload to Analyzer
+          ↓
+Analyze Threats
+          ↓
+No Suspicious Activity Detected
+```
+
+---
+
+# 📊 Presentation
+
+This project accompanies the presentation:
+
+## **AI in Cybersecurity: Detecting and Preventing Cyber Attacks**
+
+### 📥 [Download PowerPoint Presentation](presentation/AI_in_Cybersecurity.pptx)
+
+Presentation file: `presentation/AI_in_Cybersecurity.pptx`
+
+---
+
+# 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| HTML5 | Web application structure |
+| CSS3 | Cybersecurity dashboard design |
+| JavaScript | Threat-analysis logic |
+| Browser File API | Local log-file processing |
+| GitHub | Source-code hosting |
+| GitHub Pages | Live web deployment |
+
+---
+
+# 📁 Project Structure
 
 ```text
 AI-Cyber-Threat-Analyzer/
+│
 ├── index.html
 ├── README.md
 ├── LICENSE
 ├── .nojekyll
+│
 ├── css/
+│   └── style.css
+│
 ├── js/
-├── assets/icons/
+│   ├── app.js
+│   ├── analyzer.js
+│   ├── dashboard.js
+│   ├── file-handler.js
+│   └── threat-rules.js
+│
 ├── samples/
+│   ├── suspicious_activity.log
+│   └── normal_activity.log
+│
+├── screenshots/
+│   ├── dashboard.png
+│   ├── threat-detected.png
+│   └── safe-result.png
+│
 ├── presentation/
-├── docs/
-└── screenshots/
+│   ├── AI_in_Cybersecurity.pptx
+│   └── README.md
+│
+└── docs/
+    ├── PROJECT_OVERVIEW.md
+    ├── DETECTION_RULES.md
+    └── DEMO_GUIDE.md
 ```
 
-## 🛠️ Technologies
+---
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Browser File API
-- GitHub Pages
+# 🚀 Run the Project
 
-No framework, database, API key, or server is required.
+### Option 1 — Live Website
 
-## 💻 Run Locally
+[Open Live Demo](https://tanzeel0hussain.github.io/AI-Cyber-Threat-Analyzer/)
 
-You can simply open `index.html` in a browser.
-
-For a local HTTP server:
+### Option 2 — Run Locally
 
 ```bash
+git clone https://github.com/Tanzeel0Hussain/AI-Cyber-Threat-Analyzer.git
+cd AI-Cyber-Threat-Analyzer
 python3 -m http.server 8000
 ```
 
-Then open:
+Then open `http://localhost:8000`.
 
-`http://localhost:8000`
+---
 
-## 🌐 Deploy on GitHub Pages
+# 📚 Documentation
 
-1. Create a repository named **AI-Cyber-Threat-Analyzer**.
-2. Upload all project files to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select branch **main** and folder **/(root)**.
-6. Save.
-7. Wait a short time for GitHub Pages to publish the site.
+- [Project Overview](docs/PROJECT_OVERVIEW.md)
+- [Detection Rules](docs/DETECTION_RULES.md)
+- [Demo Guide](docs/DEMO_GUIDE.md)
 
-## 📊 Sample Files
+---
 
-### `suspicious_activity.log`
-Contains intentionally suspicious demo events such as repeated failed logins, brute-force behavior, suspicious IP activity, port scanning, unauthorized access, privilege escalation, and SQL injection.
+# ⚠️ Important Accuracy Note
 
-### `normal_activity.log`
-Contains routine login, application, backup, monitoring, and network events with no known suspicious indicators used by this demo.
+This project is an **educational cybersecurity demonstration**. The current implementation uses a **rule-based threat detection and scoring engine**, not a trained machine-learning model.
 
-## 📚 Documentation
+A future version could extend the system with machine learning, anomaly detection, Scikit-learn, intrusion-detection datasets, real-time network monitoring, and threat-intelligence integration.
 
-- [`docs/PROJECT_OVERVIEW.md`](docs/PROJECT_OVERVIEW.md)
-- [`docs/DETECTION_RULES.md`](docs/DETECTION_RULES.md)
-- [`docs/DEMO_GUIDE.md`](docs/DEMO_GUIDE.md)
+---
 
-## 👤 Author
+# 👨‍💻 Author
 
-**Tanzeel Hussain**  
-BS Computer Science  
+## Tanzeel Hussain
+
+**BS Computer Science**
+
+Cybersecurity • Artificial Intelligence • Ethical Hacking • Software Development
+
 GitHub: [@Tanzeel0Hussain](https://github.com/Tanzeel0Hussain)
 
-## 📄 License
+---
 
-MIT License — see [`LICENSE`](LICENSE).
+# 📄 License
+
+This project is available under the **MIT License**. See [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+
+### 🛡️ AI Cyber Threat Analyzer
+
+**Analyze Today • Detect Threats • Prevent Tomorrow**
+
+[🚀 Live Demo](https://tanzeel0hussain.github.io/AI-Cyber-Threat-Analyzer/) •
+[📊 Presentation](presentation/AI_in_Cybersecurity.pptx) •
+[📚 Documentation](docs/PROJECT_OVERVIEW.md)
+
+</div>
