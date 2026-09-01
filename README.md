@@ -31,6 +31,7 @@ The project is deployed using **GitHub Pages** and can be tested directly from a
 No installation, backend server, database, or API key is required.
 
 ⭐ This project demonstrates automated cybersecurity threat analysis for educational purposes.
+🔐 Designed to demonstrate cybersecurity log analysis and threat detection.
 
 ---
 
