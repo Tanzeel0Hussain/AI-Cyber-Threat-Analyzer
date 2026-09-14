@@ -2483,3 +2483,12 @@ footer > p {
   animation:
     shieldFloat 4s ease-in-out infinite;
 }
+
+/* File feedback, keyboard access and readable untrusted log text. */
+#fileStatus { min-height: 1.5em; overflow-wrap: anywhere; color: #cbd5e1; }
+button.choose-button { font: inherit; cursor: pointer; }
+.choose-button:focus-visible, .drop-zone:focus-visible { outline: 3px solid #7dd3fc; outline-offset: 4px; }
+.evidence-line, #fileName { overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

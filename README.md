@@ -100,7 +100,7 @@ Generate Security Recommendation
 | Security Indicator | Purpose |
 |---|---|
 | 🔐 Failed Login | Detect failed authentication attempts |
-| ⚡ Brute Force | Identify repeated login attacks |
+| ⚡ Authentication repetition | Flag repeated failures or explicit brute-force phrases for review |
 | ⛔ Unauthorized Access | Detect access violations |
 | 💉 SQL Injection | Identify SQL injection indicators |
 | 🌐 Suspicious IP Activity | Highlight suspicious network activity |
@@ -167,7 +167,7 @@ Upload to Analyzer
           ↓
 Analyze Threats
           ↓
-No Suspicious Activity Detected
+No Configured Indicators Matched
 ```
 
 ---
@@ -301,3 +301,20 @@ This project is available under the **MIT License**. See [LICENSE](LICENSE).
 [📚 Documentation](docs/PROJECT_OVERVIEW.md)
 
 </div>
+
+## Reliability update
+
+- Original evidence line numbers survive blank lines and Windows/Mac line endings.
+- SSH Failed password events are recognized.
+- Only .log/.txt files up to 2 MiB are accepted; empty and binary-like inputs produce an error.
+- Reset and file reselection invalidate pending reads so older results cannot overwrite the current selection.
+- File errors appear inline; selecting a new file clears the previous report.
+- The interface identifies the engine as rule-based and distinguishes no matches from proof of safety.
+
+### Verify changes
+
+```bash
+node tests/regression.cjs
+```
+
+The dependency-free suite has 37 regression checks and runs on GitHub Actions. UI state is checked with a DOM adapter; visual browser testing remains a separate check. See [detection limitations](docs/DETECTION_RULES.md).

@@ -1,5 +1,5 @@
 window.THREAT_RULES = [
-  { id:'failed-login', label:'Multiple Failed Login Attempts', category:'Authentication', severity:'medium', weight:12, patterns:[/failed login/i,/authentication failure/i,/invalid password/i,/login failed/i] },
+  { id:'failed-login', label:'Failed Authentication Indicator', category:'Authentication', severity:'medium', weight:12, patterns:[/failed login/i,/failed password/i,/authentication failure/i,/invalid password/i,/login failed/i] },
   { id:'brute-force', label:'Brute Force Pattern', category:'Authentication', severity:'high', weight:24, patterns:[/brute[ -]?force/i,/multiple failed attempts/i,/credential stuffing/i] },
   { id:'unauthorized', label:'Unauthorized Access Attempt', category:'Access Control', severity:'high', weight:22, patterns:[/unauthorized access/i,/access denied/i,/permission denied/i,/forbidden resource/i] },
   { id:'sql-injection', label:'SQL Injection Indicator', category:'Web Attack', severity:'critical', weight:30, patterns:[/sql injection/i,/union\s+select/i,/or\s+1=1/i,/drop\s+table/i] },

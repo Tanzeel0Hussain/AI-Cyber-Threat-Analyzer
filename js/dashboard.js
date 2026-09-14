@@ -3,7 +3,7 @@ window.Dashboard = {
     const panel=document.getElementById('resultPanel');
     panel.classList.remove('neutral','safe-state','danger-state','analyzed');
     panel.classList.add(result.suspicious?'danger-state':'safe-state','analyzed');
-    document.getElementById('statusTitle').textContent=result.suspicious?'⚠ Suspicious Activity Detected':'✓ No Suspicious Activity Detected';
+    document.getElementById('statusTitle').textContent=result.suspicious?'⚠ Suspicious Activity Detected':'✓ No Configured Indicators Matched';
     document.getElementById('riskScore').textContent=result.risk;
     document.getElementById('riskGauge').style.setProperty('--risk',result.risk);
     document.getElementById('threatLevel').textContent=result.level;
@@ -17,7 +17,7 @@ window.Dashboard = {
 
     const evidence=document.getElementById('evidenceList');
     const unique=result.matchedLines.slice(0,12);
-    document.getElementById('matchBadge').textContent=result.matchedLines.length+' matches';
+    document.getElementById('matchBadge').textContent=result.matchedLines.length+' rule matches · showing '+unique.length;
     evidence.classList.toggle('empty-state',!unique.length);
     evidence.innerHTML=unique.length?unique.map(e=>`<div class="evidence-line"><b>L${e.line}</b> • ${escapeHtml(e.rule)}<br>${escapeHtml(e.text)}</div>`).join(''):'No suspicious evidence matched.';
 
@@ -33,7 +33,10 @@ window.Dashboard = {
     document.getElementById('threatLevel').textContent='—';document.getElementById('indicatorCount').textContent='0';document.getElementById('lineCount').textContent='0';
     document.getElementById('indicatorList').innerHTML='No analysis yet.';document.getElementById('recommendation').textContent='Upload a file to begin.';
     document.getElementById('evidenceList').innerHTML='Matched log lines will appear here.';document.getElementById('breakdown').innerHTML='Threat categories will appear after analysis.';document.getElementById('matchBadge').textContent='0 matches';
-    document.getElementById('resultPanel').className='result-panel glass neutral';
+    document.getElementById('evidenceList').classList.add('empty-state');
+    document.getElementById('breakdown').classList.add('empty-state');
+    document.getElementById('resultPanel').classList.remove('safe-state','danger-state','analyzed');
+    document.getElementById('resultPanel').classList.add('neutral');
   }
 };
 function escapeHtml(str){return String(str).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}

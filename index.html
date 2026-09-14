@@ -11,7 +11,7 @@
     content="Interactive cybersecurity log threat analyzer."
   />
 
-<link rel="stylesheet" href="css/style.css?v=3" />
+<link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 
 <body>
@@ -157,14 +157,14 @@
         </span>
 
         <h1>
-          AI Powered
+          Rule-Based
           <span>Threat Analysis</span>
         </h1>
 
         <p class="hero-description">
           Upload your security log file and let the threat analyzer
           detect suspicious activity, analyze patterns, calculate risk,
-          and provide actionable cybersecurity recommendations.
+          and provide context for investigating matched indicators. Files stay in your browser; this demo uses predefined rules, not a trained AI model.
         </p>
 
 
@@ -324,6 +324,7 @@
         <div
           class="drop-zone"
           id="dropZone"
+          aria-label="Choose a log file or drop one here"
           tabindex="0"
         >
 
@@ -340,22 +341,13 @@
           </p>
 
           <small>
-            Supports .log and .txt files
+            Supports UTF-8 .log and .txt files · maximum 2 MB
           </small>
 
 
-          <label class="choose-button">
-
-            Choose File
-
-            <input
-              id="fileInput"
-              type="file"
-              accept=".log,.txt,text/plain"
-              hidden
-            />
-
-          </label>
+          <button type="button" class="choose-button" id="chooseBtn">Choose File</button>
+          <input id="fileInput" type="file" accept=".log,.txt" hidden />
+          <p id="fileStatus" role="status" aria-live="polite"></p>
 
 
           <!-- SELECTED FILE -->
@@ -513,6 +505,7 @@
 
     <section
       id="resultPanel"
+      aria-busy="false"
       class="result-panel neutral"
     >
 
@@ -1082,7 +1075,7 @@
         <p>
           This browser-based demo uses predefined detection rules
           and risk scoring to demonstrate concepts related to
-          AI-assisted cybersecurity monitoring.
+          automated log analysis. A zero score means no configured indicators matched; it does not prove a system is safe.
         </p>
 
       </div>
@@ -1188,15 +1181,15 @@
      JAVASCRIPT
 ========================================== -->
 
-<script src="js/threat-rules.js?v=2"></script>
+<script src="js/threat-rules.js?v=3"></script>
 
-<script src="js/analyzer.js?v=2"></script>
+<script src="js/analyzer.js?v=3"></script>
 
-<script src="js/file-handler.js?v=2"></script>
+<script src="js/file-handler.js?v=3"></script>
 
-<script src="js/dashboard.js?v=2"></script>
+<script src="js/dashboard.js?v=3"></script>
 
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=3"></script>
 
 </body>
 </html>
